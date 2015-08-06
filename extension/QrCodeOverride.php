@@ -9,27 +9,48 @@
     use dosamigos\qrcode\QrCode;
 
 
+    /**
+     * $Object = new QrCodeOverride([
+     *  'text'    => $this->getQrCodeText(),
+     *  'outfile' => $FullFilePath,
+     *  'level'   => 0,
+     *  'size'    => 100,
+     *  'margin'  => 0
+     *  ],'jpg');
+     *
+     * 生成原始的二维码成功
+     * if(!$Object->CreateQrCode()){
+     *    return false;
+     *  }
+     *  $Object->run($this->title."( ID:".$this->id." )",'bottom')
+     *
+     * Class QrCodeOverride
+     * @package dosamigos\qrcode\extension
+     */
     class QrCodeOverride{
 
-        public $type = 'jpg';
+        public $type = 'jpg'; //二维码格式
 
-        public $QrCodeOption;
+        public $QrCodeOption;   //二维码生成代码
 
-        public $FontFile;
+        public $FontFile;    //文字字体
 
-        public $Color = '#000000';
+        public $Color = '#000000';  //文字颜色
 
         public $FontSize = 50;  //文字大小
 
         public $Override = 70;  //比原来二维码超出多少像素
 
-        public $FontMargin = 0;
+        public $FontMargin = 0;  //文字与头部之间的区间
 
         public $LineTextNumner = 30;    //一行只能写入多少字符
 
-        private $outFile = false;
+        private $outFile = false;    //最终保存的文件
 
-
+        /**
+         * @param array $option
+         * @param $type
+         */
         public function __construct($option = [],$type){
             $this->QrCodeOption = $option;
             if($option){
